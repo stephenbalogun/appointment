@@ -24,38 +24,58 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("stephenbalogun/appointment")
 ```
 
-## Example
+## \#\# Example
 
-This is a basic example which shows you how to solve a common problem:
+title: “Introduction to the appointment package” output:
+rmarkdown::html\_vignette vignette: &gt; % % % —
 
 ``` r
 library(appointment)
-## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The {appointment} package allows you to be able to set clinic
+appointments in a nicely formatted style. It has two functions -
+`appt_next()` and `appt_last`. Both of which take three arguments -
+clinic date (c\_date), duration of pills (d\_pills), and next
+appointment date (days). `d_pills` and `days` are mutually exclusive.
+
+We are going to create some useful scenarios:
+
+1.  Imagine a patient who comes to the clinic on Friday, 3rd September
+    2021 and had 2 weeks worth of medications dispensed. He is expected
+    to come for next check up on the last day of his medication.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+clinic_date <- "2021-09-03"
+pill_days <- 14
+
+appt_next(clinic_date, pill_days)
+#> Your next clinic appointment is on Friday, 17 September 2021
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
+2.  Imagine a patient who came to the hospital on Saturday, 4th
+    September 2021. He has now be adjudged to be healthy so he does not
+    require anymore medications but will still require a follow up a
+    week after.
 
-You can also embed plots, for example:
+``` r
+clinic_date <- "2021-09-04"
+follow_up_days <- 7
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+appt_next(clinic_date, follow_up_days)
+#> Your next clinic appointment is on Saturday, 11 September 2021
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+3.  Finally, let us assume a patient who comes to the clinic on the
+    first of September 2021. He remembers that he was given 20 days
+    worth of medications during the last appointment but could not
+    remember the exact appointment date. You’d like to know the date to
+    pull his last clinic records.
+
+``` r
+clinic_date <- "2021-09-01"
+d_pills <- 20
+
+appt_last(clinic_date, d_pills)
+#> Your last clinic appointment was on Thursday, 12 August 2021
+```

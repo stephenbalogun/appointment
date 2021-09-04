@@ -3,10 +3,8 @@
 #' @param date ISO8601 date standard
 #'
 #' @return long format date
-#' @export
+#' @keywords internal
 #'
-#' @examples
-#' date_stamp(Sys.Date())
 date_stamp <- function(date) {
 
   date <- lubridate::as_date(date)

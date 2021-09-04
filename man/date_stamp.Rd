@@ -15,6 +15,4 @@ long format date
 \description{
 date_stamp
 }
-\examples{
-date_stamp(Sys.Date())
-}
+\keyword{internal}

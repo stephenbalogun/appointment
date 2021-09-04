@@ -1,41 +1,4 @@
 ---
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
-# appointment
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of appointment is to ...
-
-## Installation
-
-You can install the released version of appointment from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("appointment")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("stephenbalogun/appointment")
-```
-## Example
----
 title: "Introduction to the appointment package"
 output: rmarkdown::html_vignette
 vignette: >
@@ -85,4 +48,3 @@ d_pills <- 20
 
 appt_last(clinic_date, d_pills)
 ```
-
